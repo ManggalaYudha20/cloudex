@@ -1,29 +1,33 @@
 <?php
-$conn = mysqli_connect("localhost","root", "", "cloudex");
+$conn = mysqli_connect("localhost","id20907097_root", "p%4S&=sA8WUhY>cb", "id20907097_cloudex");
 
-$resultnama = mysqli_query($conn, "SELECT * FROM timfoto");
+$resultus = mysqli_query($conn, "SELECT * FROM about");
 ?>
+
 
 
 <!DOCTYPE html>
 <html>
 <head>
   <title>About Us</title>
-  <link rel="stylesheet" href="css\css\styleabout.css">
+  <link rel="stylesheet" type="text/css" href="css\css\styleabout.css">
 </head>
 <body>
   <h1>About Us</h1>
-
-  <h2>Anggota Tim:</h2>
-  <?php while ($row = mysqli_fetch_assoc($resultnama)) : ?>
-  <div class="member">
-    <img src="css\img\<?php echo $row["foto"]; ?>" widht="50">
-    <div class="member-info">
-      <h3><?php echo $row["nama"]; ?></h3>
-      <h4><?php echo $row["nim"]; ?></h4>
-      <?php endwhile; ?>
-    </div>
-  </div>
-
+  <h1>Tim Pengembang Cloudex</h1>
+  <?php while ($row = mysqli_fetch_assoc($resultus)) : ?>
+  <table>
+    <tr>
+      <th>Foto</th>
+      <th>Nama</th>
+      <th>NIM</th>
+    </tr>
+    <tr>
+      <td><img src="css\img\<?php echo $row["foto"]; ?>" widht="50"></td>
+      <td><?php echo $row["nama"]; ?></td>
+      <td><?php echo $row["nim"]; ?></td>
+    </tr>
+    <?php endwhile; ?>
+  </table>
 </body>
 </html>

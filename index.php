@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost","root", "", "cloudex");
+$conn = mysqli_connect("localhost","id20907097_root", "p%4S&=sA8WUhY>cb", "id20907097_cloudex");
 
 ?>
 
@@ -23,7 +23,7 @@ $conn = mysqli_connect("localhost","root", "", "cloudex");
 
 <!-- Style -->
 
-    <link rel="stylesheet" href="css\css\style.css">
+    <link rel="stylesheet" href= "css\css\styles.css">
 </head>
 
 </body> 
@@ -36,7 +36,7 @@ $conn = mysqli_connect("localhost","root", "", "cloudex");
     <div class="navbar-nav">
         <a href="#home">Home</a>
         <a href="aboutus.php">About Us</a>
-        <a href="upfile.php">Upload File</a>
+        <a href="upload.php">Upload File</a>
         <a href="#contact">Service</a>
     </div>
 
@@ -50,13 +50,14 @@ $conn = mysqli_connect("localhost","root", "", "cloudex");
 <section class="hero" id="home">
     <main class="content">
         <h1>Save <span>Your File</span></h1>
-        <a href="menu.php" class="cta">Go To Cloud</a>
+        <a href="upload.php" class="cta">Go To Cloud</a>
     </main>
 </section>
 
 
-<?
-$conn = mysqli_connect("localhost", "root", "", "cloudex");
+<?php
+$conn = mysqli_connect("localhost","id20907097_root", "p%4S&=sA8WUhY>cb", "id20907097_cloudex");
+
 
 // cek apakah tombol submit sudah ditekan atau belum
 if( isset($_POST["submit"])) {
@@ -127,8 +128,8 @@ if( isset($_POST["submit"])) {
 
     <div class="links">
         <a href="#home">Home</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="upfile.html">Upload File</a>
+        <a href="aboutus.php">About Us</a>
+        <a href="upload.php">Upload File</a>
         <a href="#contact">Service</a>
     </div>
 

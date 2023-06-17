@@ -1,47 +1,40 @@
 <?php
-$conn = mysqli_connect("localhost","root", "", "cloudex");
+$conn = mysqli_connect("localhost","id20907097_root", "p%4S&=sA8WUhY>cb", "id20907097_cloudex");
 
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_POST['submit'])) {
+  $foto = $_FILES['foto']['name'];
+  $temp = $_FILES['foto']['tmp_name'];
+  $folder = "uploads/";
+
+  move_uploaded_file($temp, $folder.$foto);
+
+  $tanggal_upload = date('Y-m-d H:i:s');
+  $sql = "INSERT INTO savefoto (nama_file, tanggal_upload) VALUES ('$foto', '$tanggal_upload')";
+  if (mysqli_query($conn, $sql)) {
+    echo "Foto berhasil diupload dan disimpan di database.";
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
+}
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Upload File</title>
-  <link rel="stylesheet" href="css\css\styleup.css">
+  <title>Upload Foto</title>
+  <link rel="stylesheet" type="text/css" href="css\css\styleupload.css">
 </head>
 <body>
-
-<?php
- // Cek koneksi ke database
- if ($conn->connect_error) {
-  die("Koneksi ke database gagal: " . $conn->connect_error);
-}
-
-if (isset($_FILES['file'])) {
-  // Mengambil data file yang diupload
-  $namaFile = $_FILES['file']['name'];
-  $ukuranFile = $_FILES['file']['size'];
-  $tipeFile = $_FILES['file']['type'];
-  $tmpFile = $_FILES['file']['tmp_name'];
-
-  // Membaca file yang diupload
-  $fp = fopen($tmpFile, 'r');
-  $isiFile = fread($fp, filesize($tmpFile));
-  $isiFile = addslashes($isiFile);
-  fclose($fp);
-
-  // Menyimpan data file ke dalam database
-  $sql = "INSERT INTO foto (namaFile, ukuranFile, tipeFile, isiFile) VALUES ('$namaFile', '$ukuranFile', '$tipeFile', '$isiFile')";
-}
-
-?>
-  <h1>Upload File</h1>
-
-  <form class="upload-form" action="upfile.php" method="POST" enctype="multipart/form-data">
-    <label for="file">Choose a file:</label>
-    <input type="file" id="file" name="file">
-
-    <button type="submit">Upload</button>
+  <h1>Upload Foto</h1>
+  <form action="" method="POST" enctype="multipart/form-data">
+    <input type="file" name="foto" accept="image/*" required>
+    <button type="submit" name="submit">Upload</button>
   </form>
 </body>
 </html>
